@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #d9f0ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.bucket-container {
+    background-color: #83c9f4;
+    padding: 3em 4em;
+    border-radius: 0.7em;
+}
+
+.bucket-container h1 {
+    margin-bottom: 0.8em;
+    text-align: center;
+}
+
+.task-completed {
+    color: green;
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+.pending {
+    color: rgba(255, 0, 0, 0.447);
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+.future {
+    color: #7681b3;
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+    .bucket-container {
+        padding: 1em;
+        height: 80%;
+    }
+    .bucket-container ol {
+        margin-left: 1em;
+    }
+}
