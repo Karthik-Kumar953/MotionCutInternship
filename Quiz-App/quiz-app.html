@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Quiz App</title>
+        <link rel="stylesheet" href="./quiz-app.css" />
+        <script src="./quiz-app.js" defer></script>
+    </head>
+    <body>
+        <div class="quiz-container">
+            <div class="quiz-choices" id="quiz-choices">
+                <h1>Quiz App</h1>
+                <label
+                    for="difficulty"
+                    style="text-align: left; display: block; margin-top: 1rem"
+                >
+                    Select Difficulty
+                </label>
+                <select id="difficulty" class="input-field">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <button id="start-btn">Start Quiz</button>
+            </div>
+
+            <main class="quiz-content" id="quiz-content" style="display: none">
+                <div class="progress-container">
+                    <div style="display: flex; justify-content: space-between">
+                        <p id="questions-count"></p>
+                        <p id="heigest-score"></p>
+                    </div>
+                    <div class="progress-bar" id="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                </div>
+                <h2 id="question"></h2>
+                <div class="options" id="options"></div>
+                <button class="next-btn" id="next-btn">Next</button>
+            </main>
+        </div>
+    </body>
+</html>
