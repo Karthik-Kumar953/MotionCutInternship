@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Animated Landing Page</title>
+        <style>
+            /* Base Styles */
+            :root {
+                --primary: #4361ee;
+                --secondary: #3f37c9;
+                --accent: #4895ef;
+                --light: #f8f9fa;
+                --dark: #212529;
+                --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: var(--dark);
+                background-color: var(--light);
+                overflow-x: hidden;
+            }
+
+            /* Utility Classes */
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .section {
+                padding: 100px 0;
+                position: relative;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 12px 30px;
+                background-color: var(--primary);
+                color: white;
+                border: none;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                cursor: pointer;
+                transition: var(--transition);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn:hover {
+                background-color: var(--secondary);
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            /* Animations */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes slideInLeft {
+                from {
+                    opacity: 0;
+                    transform: translateX(-50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            @keyframes scaleIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            /* Header Styles */
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 20px 0;
+                background-color: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                transition: var(--transition);
+            }
+
+            header.scrolled {
+                padding: 15px 0;
+                background-color: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-size: 24px;
+                font-weight: 700;
+                color: var(--primary);
+                text-decoration: none;
+            }
+
+            .nav-links {
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-links li {
+                margin-left: 30px;
+            }
+
+            .nav-links a {
+                color: var(--dark);
+                text-decoration: none;
+                font-weight: 500;
+                transition: var(--transition);
+                position: relative;
+            }
+
+            .nav-links a:hover {
+                color: var(--primary);
+            }
+
+            .nav-links a::after {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -5px;
+                left: 0;
+                background-color: var(--primary);
+                transition: var(--transition);
+            }
+
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+
+            /* Hero Section */
+            .hero {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                background: linear-gradient(
+                    135deg,
+                    rgba(67, 97, 238, 0.1) 0%,
+                    rgba(255, 255, 255, 1) 100%
+                );
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 100%;
+                height: 200%;
+                background: radial-gradient(
+                    circle,
+                    rgba(67, 97, 238, 0.05) 0%,
+                    rgba(255, 255, 255, 0) 70%
+                );
+                z-index: -1;
+            }
+
+            .hero-content {
+                max-width: 600px;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+                margin-bottom: 20px;
+                line-height: 1.2;
+                color: var(--dark);
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+                color: #555;
+            }
+
+            .hero-image {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 50%;
+                max-width: 700px;
+                opacity: 0;
+                animation: slideInRight 1s ease-out forwards;
+                animation-delay: 0.3s;
+            }
+
+            .hero .btn {
+                opacity: 0;
+                animation: fadeIn 1s ease-out forwards;
+                animation-delay: 0.6s;
+            }
+
+            .hero h1 span {
+                display: inline-block;
+                opacity: 0;
+                animation: fadeIn 0.8s ease-out forwards;
+            }
+
+            .hero h1 span:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+            .hero h1 span:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            .hero h1 span:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+
+            /* Features Section */
+            .features {
+                background-color: white;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 60px;
+                position: relative;
+                display: inline-block;
+            }
+
+            .section-title::after {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 50px;
+                height: 4px;
+                background-color: var(--primary);
+                border-radius: 2px;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .feature-card {
+                background-color: white;
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                transition: var(--transition);
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            .feature-card.animate {
+                opacity: 1;
+                transform: translateY(0);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .feature-icon {
+                font-size: 2.5rem;
+                color: var(--primary);
+                margin-bottom: 20px;
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+
+            /* About Section */
+            .about {
+                background-color: #f5f7ff;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .about::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSg2NywgOTcsIDIzOCwgMC4wNSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=");
+                opacity: 0.5;
+                z-index: 0;
+            }
+
+            .about-content {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                align-items: center;
+                gap: 50px;
+            }
+
+            .about-text {
+                flex: 1;
+                opacity: 0;
+                transform: translateX(-50px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .about-text.animate {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .about-image {
+                flex: 1;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                transform: translateX(50px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .about-image.animate {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .about-image img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* Testimonials */
+            .testimonials {
+                background-color: white;
+            }
+
+            .testimonials-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .testimonial-card {
+                background-color: white;
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                position: relative;
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .testimonial-card.animate {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .testimonial-card::before {
+                content: '"';
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                font-size: 4rem;
+                color: rgba(67, 97, 238, 0.1);
+                font-family: Georgia, serif;
+                line-height: 1;
+            }
+
+            .testimonial-content {
+                margin-bottom: 20px;
+                font-style: italic;
+                color: #555;
+            }
+
+            .testimonial-author {
+                display: flex;
+                align-items: center;
+            }
+
+            .author-avatar {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 15px;
+            }
+
+            .author-avatar img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .author-info h4 {
+                margin-bottom: 5px;
+                color: var(--dark);
+            }
+
+            .author-info p {
+                color: #777;
+                font-size: 0.9rem;
+            }
+
+            /* CTA Section */
+            .cta {
+                background: linear-gradient(
+                    135deg,
+                    var(--primary) 0%,
+                    var(--secondary) 100%
+                );
+                color: white;
+                text-align: center;
+                padding: 100px 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .cta::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    rgba(255, 255, 255, 0) 70%
+                );
+                z-index: 0;
+            }
+
+            .cta-content {
+                position: relative;
+                z-index: 1;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .cta h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .cta p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+                transition-delay: 0.2s;
+            }
+
+            .cta .btn {
+                background-color: white;
+                color: var(--primary);
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+                transition-delay: 0.4s;
+            }
+
+            .cta.animate h2,
+            .cta.animate p,
+            .cta.animate .btn {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .cta .btn:hover {
+                background-color: var(--light);
+                color: var(--secondary);
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--dark);
+                color: white;
+                padding: 60px 0 20px;
+            }
+
+            .footer-content {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+
+            .footer-column h3 {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+                position: relative;
+                padding-bottom: 10px;
+            }
+
+            .footer-column h3::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 40px;
+                height: 2px;
+                background-color: var(--primary);
+            }
+
+            .footer-column ul {
+                list-style: none;
+            }
+
+            .footer-column ul li {
+                margin-bottom: 10px;
+            }
+
+            .footer-column a {
+                color: #aaa;
+                text-decoration: none;
+                transition: var(--transition);
+            }
+
+            .footer-column a:hover {
+                color: white;
+                padding-left: 5px;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                color: #aaa;
+                font-size: 0.9rem;
+            }
+
+            /* Parallax Effect */
+            .parallax {
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .parallax::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .parallax-content {
+                position: relative;
+                z-index: 1;
+                color: white;
+                text-align: center;
+                max-width: 800px;
+                padding: 0 20px;
+            }
+
+            .parallax h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .parallax p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+                transition-delay: 0.2s;
+            }
+
+            .parallax.animate h2,
+            .parallax.animate p {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 992px) {
+                .hero h1 {
+                    font-size: 2.8rem;
+                }
+
+                .about-content {
+                    flex-direction: column;
+                }
+
+                .about-text,
+                .about-image {
+                    width: 100%;
+                }
+
+                .about-image {
+                    margin-top: 40px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .hero {
+                    text-align: center;
+                    padding-top: 100px;
+                }
+
+                .hero-content {
+                    max-width: 100%;
+                }
+
+                .hero-image {
+                    position: relative;
+                    width: 100%;
+                    margin-top: 50px;
+                    transform: none;
+                    top: auto;
+                    right: auto;
+                }
+
+                .nav-links {
+                    display: none;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .cta h2 {
+                    font-size: 2rem;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .hero h1 {
+                    font-size: 2.2rem;
+                }
+
+                .hero p {
+                    font-size: 1rem;
+                }
+
+                .section {
+                    padding: 60px 0;
+                }
+
+                .feature-card,
+                .testimonial-card {
+                    padding: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header id="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="#" class="logo">Animate</a>
+                    <ul class="nav-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#cta">Get Started</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>
+                        <span>Create</span>
+                        <span>Stunning</span>
+                        <span>Animations</span>
+                    </h1>
+                    <p>
+                        Bring your website to life with smooth scroll-triggered
+                        animations that captivate your audience and enhance user
+                        experience.
+                    </p>
+                    <a href="#cta" class="btn">Get Started</a>
+                </div>
+                <img
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                    alt="Hero Image"
+                    class="hero-image"
+                />
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section features" id="features">
+            <div class="container">
+                <h2 class="section-title text-center">Amazing Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Fast Performance</h3>
+                        <p>
+                            Our animations are optimized for smooth performance
+                            without compromising page speed.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Beautiful Effects</h3>
+                        <p>
+                            Choose from a variety of elegant animations that
+                            enhance your content without distracting.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Easy to Implement</h3>
+                        <p>
+                            Simple integration with your existing website using
+                            clean, semantic code.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parallax Section -->
+        <section
+            class="parallax"
+            style="
+                background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            "
+        >
+            <div class="parallax-content">
+                <h2>Immersive Experiences</h2>
+                <p>
+                    Create depth and dimension with parallax scrolling effects
+                    that engage your visitors.
+                </p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section about" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2 class="section-title">About Our Technology</h2>
+                        <p>
+                            We utilize the latest web technologies including the
+                            IntersectionObserver API to create performant
+                            animations that trigger precisely when elements come
+                            into view.
+                        </p>
+                        <p>
+                            Our approach combines CSS animations with JavaScript
+                            to deliver buttery smooth effects that work across
+                            all modern browsers.
+                        </p>
+                        <a href="#cta" class="btn" style="margin-top: 20px"
+                            >Learn More</a
+                        >
+                    </div>
+                    <div class="about-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="About Us"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section testimonials" id="testimonials">
+            <div class="container">
+                <h2 class="section-title text-center">What Our Clients Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>
+                                The animations transformed our website from
+                                static to dynamic, resulting in a 40% increase
+                                in user engagement.
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img
+                                    src="https://randomuser.me/api/portraits/women/32.jpg"
+                                    alt="Sarah Johnson"
+                                />
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Marketing Director</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>
+                                Implementation was seamless and the results were
+                                immediate. Our bounce rate decreased by 25%
+                                after adding these animations.
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img
+                                    src="https://randomuser.me/api/portraits/men/45.jpg"
+                                    alt="Michael Chen"
+                                />
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <p>CEO, TechStart</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>
+                                Our conversion rates improved significantly
+                                after implementing these scroll animations.
+                                Highly recommended!
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img
+                                    src="https://randomuser.me/api/portraits/women/68.jpg"
+                                    alt="Emily Rodriguez"
+                                />
+                            </div>
+                            <div class="author-info">
+                                <h4>Emily Rodriguez</h4>
+                                <p>E-commerce Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta" id="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Animate Your Website?</h2>
+                    <p>
+                        Join thousands of satisfied customers who have
+                        transformed their websites with our scroll animation
+                        technology.
+                    </p>
+                    <a href="#" class="btn">Start Free Trial</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>Animate</h3>
+                        <p>
+                            Bringing websites to life with beautiful, performant
+                            animations that enhance user experience.
+                        </p>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#cta">Get Started</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Tutorials</a></li>
+                            <li><a href="#">API Reference</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li>
+                                <a href="mailto:info@animate.com"
+                                    >info@animate.com</a
+                                >
+                            </li>
+                            <li>
+                                <a href="tel:+1234567890">+1 (234) 567-890</a>
+                            </li>
+                            <li><a href="#">123 Animation St.</a></li>
+                            <li><a href="#">San Francisco, CA</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2023 Animate. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Header scroll effect
+                const header = document.getElementById("header");
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 50) {
+                        header.classList.add("scrolled");
+                    } else {
+                        header.classList.remove("scrolled");
+                    }
+                });
+
+                // Smooth scrolling for navigation links
+                document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                    anchor.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        document
+                            .querySelector(this.getAttribute("href"))
+                            .scrollIntoView({
+                                behavior: "smooth",
+                            });
+                    });
+                });
+
+                // Intersection Observer for scroll animations
+                const animateOnScroll = function () {
+                    const elementsToAnimate = document.querySelectorAll(
+                        ".feature-card, .about-text, .about-image, .testimonial-card, .parallax h2, .parallax p, .cta h2, .cta p, .cta .btn"
+                    );
+
+                    const observerOptions = {
+                        threshold: 0.1,
+                        rootMargin: "0px 0px -50px 0px",
+                    };
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("animate");
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, observerOptions);
+
+                    elementsToAnimate.forEach((element) => {
+                        observer.observe(element);
+                    });
+                };
+
+                // Initialize animations
+                animateOnScroll();
+
+                // Hero text animation
+                const heroSpans = document.querySelectorAll(".hero h1 span");
+                heroSpans.forEach((span, index) => {
+                    span.style.animationDelay = `${index * 0.1}s`;
+                });
+            });
+        </script>
+    </body>
+</html>

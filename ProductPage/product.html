@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Premium Wireless Headphones - AudioShop</title>
+        <link rel="stylesheet" href="product.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="logo">AudioShop</div>
+                <nav class="nav">
+                    <a href="#">Home</a>
+                    <a href="#">Products</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </nav>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="product-detail">
+            <div class="container">
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img
+                            id="mainImage"
+                            src="https://m.media-amazon.com/images/I/71Wq67q-4VL._SL1500_.jpg"
+                            alt="Premium Wireless Headphones"
+                        />
+                    </div>
+                    <div class="thumbnail-carousel">
+                        <div
+                            class="thumbnail active"
+                            onclick="changeImage('https://m.media-amazon.com/images/I/61Bb9hBUEDL._SL1500_.jpg')"
+                        >
+                            <img
+                                src="https://m.media-amazon.com/images/I/61Bb9hBUEDL._SL1500_.jpg"
+                                alt="Thumbnail 1"
+                            />
+                        </div>
+                        <div
+                            class="thumbnail"
+                            onclick="changeImage('https://m.media-amazon.com/images/I/711XEmS1BNL._SL1500_.jpg')"
+                        >
+                            <img
+                                src="https://m.media-amazon.com/images/I/711XEmS1BNL._SL1500_.jpg"
+                                alt="Thumbnail 2"
+                            />
+                        </div>
+                        <div
+                            class="thumbnail"
+                            onclick="changeImage('https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg')"
+                        >
+                            <img
+                                src="https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
+                                alt="Thumbnail 3"
+                            />
+                        </div>
+                        <div
+                            class="thumbnail"
+                            onclick="changeImage('https://images.unsplash.com/photo-1628202926206-c63a34b1618f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D')"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1628202926206-c63a34b1618f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D"
+                                alt="Thumbnail 4"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h1>Premium Wireless Headphones</h1>
+                    <div class="rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span class="review-count">(128 reviews)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$199.99</span>
+                        <span class="original-price">$249.99</span>
+                        <span class="discount">20% OFF</span>
+                    </div>
+                    <div class="availability">
+                        <i class="fas fa-check-circle"></i> In Stock (Only 5
+                        left)
+                    </div>
+                    <div class="description">
+                        <p>
+                            Experience crystal-clear sound with our premium
+                            wireless headphones. Featuring active noise
+                            cancellation, 30-hour battery life, and
+                            ultra-comfortable ear cushions for all-day
+                            listening.
+                        </p>
+                        <ul>
+                            <li>Active Noise Cancellation</li>
+                            <li>30-hour battery life</li>
+                            <li>Bluetooth 5.0</li>
+                            <li>Built-in microphone</li>
+                            <li>Foldable design</li>
+                        </ul>
+                    </div>
+                    <div class="color-options">
+                        <span>Color:</span>
+                        <div class="colors">
+                            <div class="color-option black active"></div>
+                            <div class="color-option silver"></div>
+                            <div class="color-option blue"></div>
+                        </div>
+                    </div>
+                    <div class="quantity-selector">
+                        <span>Quantity:</span>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus">-</button>
+                            <input
+                                type="number"
+                                value="1"
+                                min="1"
+                                max="5"
+                                class="quantity-input"
+                            />
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="add-to-cart" onclick="addToCart()">
+                            Add to Cart
+                        </button>
+                        <button class="buy-now">Buy Now</button>
+                    </div>
+                    <div class="delivery-info">
+                        <div class="delivery-option">
+                            <i class="fas fa-truck"></i>
+                            <span>Free delivery on orders over $50</span>
+                        </div>
+                        <div class="delivery-option">
+                            <i class="fas fa-undo"></i>
+                            <span>30-day free returns</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <section class="product-tabs">
+            <div class="container">
+                <div class="tabs">
+                    <button class="tab active" onclick="openTab('description')">
+                        Description
+                    </button>
+                    <button class="tab" onclick="openTab('specs')">
+                        Specifications
+                    </button>
+                    <button class="tab" onclick="openTab('reviews')">
+                        Reviews
+                    </button>
+                </div>
+                <div id="description" class="tab-content active">
+                    <h2>Product Description</h2>
+                    <p>
+                        Our Premium Wireless Headphones deliver an unparalleled
+                        listening experience. The advanced noise cancellation
+                        technology blocks out ambient noise, while the
+                        high-fidelity audio drivers provide crisp, clear sound
+                        across all frequencies.
+                    </p>
+                    <p>
+                        The ergonomic design with memory foam ear cushions
+                        ensures comfort even during extended listening sessions.
+                        With a 30-hour battery life and quick charge capability
+                        (5 minutes of charging provides 2 hours of playback),
+                        you'll never be without your music.
+                    </p>
+                </div>
+                <div id="specs" class="tab-content">
+                    <h2>Technical Specifications</h2>
+                    <table>
+                        <tr>
+                            <td>Brand</td>
+                            <td>AudioShop</td>
+                        </tr>
+                        <tr>
+                            <td>Model</td>
+                            <td>WH-2023</td>
+                        </tr>
+                        <tr>
+                            <td>Connectivity</td>
+                            <td>Bluetooth 5.0, 3.5mm jack</td>
+                        </tr>
+                        <tr>
+                            <td>Battery Life</td>
+                            <td>30 hours (ANC on), 40 hours (ANC off)</td>
+                        </tr>
+                        <tr>
+                            <td>Charging Time</td>
+                            <td>2 hours (full charge)</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>254g</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="reviews" class="tab-content">
+                    <h2>Customer Reviews</h2>
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="review-author">Alex Johnson</span>
+                            <span class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </div>
+                        <div class="review-content">
+                            <p>
+                                These headphones are amazing! The noise
+                                cancellation works perfectly on my commute, and
+                                the sound quality is exceptional.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="review-author">Sarah Miller</span>
+                            <span class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                        </div>
+                        <div class="review-content">
+                            <p>
+                                Very comfortable and great battery life. The
+                                only downside is they're a bit bulky for travel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-section">
+                    <h3>AudioShop</h3>
+                    <p>Premium audio products for music lovers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@audioshop.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="./product.js   "></script>
+    </body>
+</html>
